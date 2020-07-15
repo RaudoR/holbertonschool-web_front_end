@@ -1,1 +1,1 @@
-# 0x00. Advanced HTML
+# Repo for all front-end projects
