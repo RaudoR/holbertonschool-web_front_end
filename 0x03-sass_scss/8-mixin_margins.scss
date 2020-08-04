@@ -1,0 +1,13 @@
+/* mixin */
+@mixin margin-length($val) {
+    margin-left: $val;
+    margin-right: $val;
+}
+
+body {
+    @include margin-length(10px)
+}
+
+div {
+    @include margin-length(15px);
+}
