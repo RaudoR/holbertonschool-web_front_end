@@ -1,26 +1,26 @@
 function countPrimeNumbers() {
+    const primeTable = new Array(100).fill(true);
     let count = 0;
-
-    for (let i = 2; i <= 100; i++) {
-        let isprime = true;
-        let limit = Math.round(Math.sqrt(i));
-        for (var mod = 2; mod <= limit; mod++) {
-            if (i % mod == 0) {
-                isprime = false;
-                break;
-            }
+    for (let i = 2; i < 100; i++) {
+      if (primeTable[i] === true) {
+        count++;
+        for (let j = 2; i * j < 100; j++) {
+          primeTable[i * j] = false;
         }
-        if (isprime) {
-            count++;
-        }
+      }
     }
     return count;
-}
-
-const performance = require('perf_hooks').performance;
-const startTime = performance.now();
-for (let i = 0; i < 100; i++) {
-    setTimeout(countPrimeNumbers, 0);
-}
-const endTime = performance.now();
-console.log(`Execution time of calculating prime numbers 100 times was ${endTime - startTime} milliseconds.`);
+  }
+  
+  let t0 = performance.now();
+  setTimeout(function () {
+    for (let i = 0; i < 100; i++) {
+      console.log(countPrimeNumbers());
+    }
+  }, 0);
+  let t1 = performance.now();
+  console.log(
+    `Execution time of calculating prime numbers 100 times was ${
+      t1 - t0
+    } milliseconds.`
+  );
